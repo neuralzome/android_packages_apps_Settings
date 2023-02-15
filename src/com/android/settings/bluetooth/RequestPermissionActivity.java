@@ -70,6 +70,8 @@ public class RequestPermissionActivity extends Activity implements
 
     private @NonNull CharSequence mAppLabel;
 
+    AlwaysDiscoverable mAlwaysDiscoverable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +87,8 @@ public class RequestPermissionActivity extends Activity implements
         }
 
         int btState = mBluetoothAdapter.getState();
+
+        mAlwaysDiscoverable = new AlwaysDiscoverable(this);
 
         if (mRequest == REQUEST_DISABLE) {
             switch (btState) {
@@ -259,6 +263,9 @@ public class RequestPermissionActivity extends Activity implements
         if (mRequest == REQUEST_ENABLE || mRequest == REQUEST_DISABLE) {
             // BT toggled. Done
             returnCode = RESULT_OK;
+        } else if (mTimeout == BluetoothDiscoverableEnabler.DISCOVERABLE_TIMEOUT_NEVER) {
+                    mAlwaysDiscoverable.start();
+                    returnCode = RESULT_OK;
         } else if (mBluetoothAdapter.setScanMode(
                 BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE, mTimeout)) {
             // If already in discoverable mode, this will extend the timeout.
@@ -310,9 +317,9 @@ public class RequestPermissionActivity extends Activity implements
 
             Log.d(TAG, "Setting Bluetooth Discoverable Timeout = " + mTimeout);
 
-            if (mTimeout < 1 || mTimeout > MAX_DISCOVERABLE_TIMEOUT) {
-                mTimeout = BluetoothDiscoverableEnabler.DEFAULT_DISCOVERABLE_TIMEOUT;
-            }
+            // if (mTimeout < 1 || mTimeout > MAX_DISCOVERABLE_TIMEOUT) {
+            //    mTimeout = BluetoothDiscoverableEnabler.DEFAULT_DISCOVERABLE_TIMEOUT;
+            // }
         } else {
             Log.e(TAG, "Error: this activity may be started only with intent "
                     + BluetoothAdapter.ACTION_REQUEST_ENABLE + " or "
