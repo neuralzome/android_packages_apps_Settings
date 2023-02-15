@@ -22,6 +22,11 @@
     android:title="@string/firmware_version"
     settings:keywords="@string/keywords_android_version">
 
+    <!-- Flo Logo -->
+    <PreferenceScreen
+        android:layout="@layout/flo_branding_layout"
+        android:key="flo_branding" />
+
     <!-- Android version -->
     <Preference
         android:key="os_firmware_version"
