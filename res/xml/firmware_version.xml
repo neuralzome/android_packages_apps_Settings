@@ -43,6 +43,13 @@
         settings:enableCopying="true"
         settings:controller="com.android.settings.deviceinfo.firmwareversion.FloVersionPreferenceController"/>
 
+    <!-- Flo Version  -->
+    <Preference
+        android:key="flo_manufacturer" 
+        android:title="@string/flo_manufacturer"
+        android:summary="@string/flo_manufacturer_name"
+        settings:enableCopying="true" />
+
     <!-- Android version -->
     <Preference
         android:key="os_firmware_version"
