@@ -27,6 +27,14 @@
         android:layout="@layout/flo_branding_layout"
         android:key="flo_branding" />
 
+    <!-- Flo Version  -->
+    <Preference
+        android:key="flo_version" 
+        android:title="@string/flo_version"
+        android:summary="@string/summary_placeholder"
+        settings:enableCopying="true"
+        settings:controller="com.android.settings.deviceinfo.firmwareversion.FloVersionPreferenceController"/>
+
     <!-- Android version -->
     <Preference
         android:key="os_firmware_version"
