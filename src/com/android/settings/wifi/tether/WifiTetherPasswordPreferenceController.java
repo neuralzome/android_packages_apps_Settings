@@ -51,7 +51,7 @@ public class WifiTetherPasswordPreferenceController extends WifiTetherBasePrefer
         final WifiConfiguration config = mWifiManager.getWifiApConfiguration();
         if (config == null || (config.getAuthType() == WifiConfiguration.KeyMgmt.WPA2_PSK
                 && TextUtils.isEmpty(config.preSharedKey))) {
-            mPassword = generateRandomPassword();
+            mPassword = "floedge123";
         } else {
             mPassword = config.preSharedKey;
         }
@@ -82,7 +82,7 @@ public class WifiTetherPasswordPreferenceController extends WifiTetherBasePrefer
         if (securityType == WifiConfiguration.KeyMgmt.NONE) {
             return "";
         } else if (!isTextValid(mPassword)) {
-            mPassword = generateRandomPassword();
+            mPassword = "floedge123";
             updatePasswordDisplay((EditTextPreference) mPreference);
         }
         return mPassword;
